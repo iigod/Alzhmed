@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Деменция: понимание и забота</title>
+<meta name="description" content="Информация и поддержка для тех, кто заботится о близком с деменцией. Простые правила общения, организация ухода, профилактика.">
+<style>
+  :root {
+    --bg: #FBF8F3;
+    --surface: #FFFFFF;
+    --primary: #4A7C59;
+    --primary-dark: #3A6147;
+    --primary-light: #E3EDE5;
+    --accent: #D4A574;
+    --accent-light: #F5E9DA;
+    --text: #2B3A32;
+    --text-muted: #5C6B62;
+    --border: #E5E0D8;
+    --radius: 16px;
+    --shadow: 0 4px 20px rgba(43, 58, 50, 0.06);
+    --shadow-hover: 0 8px 28px rgba(43, 58, 50, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(251, 248, 243, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 1.1rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover { background: var(--primary-light); color: var(--primary-dark); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 80px 0 70px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--primary-light) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    color: var(--primary-dark);
+    margin-bottom: 22px;
+    font-weight: 700;
+  }
+
+  .hero p {
+    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto 36px;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 16px 36px;
+    border-radius: 50px;
+    transition: all 0.25s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(74, 124, 89, 0.3);
+  }
+
+  .btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(74, 124, 89, 0.4);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--primary-dark);
+    border: 2px solid var(--primary);
+    box-shadow: none;
+  }
+
+  .btn-secondary:hover { background: var(--primary); color: #fff; }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 70px 0; }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    color: var(--primary-dark);
+    text-align: center;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto 48px;
+  }
+
+  .card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+
+  .intro-card { max-width: 800px; margin: 0 auto; }
+  .intro-card p { margin-bottom: 16px; }
+  .intro-card p:last-child { margin-bottom: 0; }
+
+  .highlight {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  /* Tips grid */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    margin-top: 10px;
+  }
+
+  .tip-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 26px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .tip-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+  .tip-num {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 14px;
+    font-size: 1rem;
+  }
+
+  .tip-card h3 {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+
+  .tip-card p { font-size: 1rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* Numbered list inside cards */
+  .numbered { list-style: none; counter-reset: item; }
+  .numbered li {
+    position: relative;
+    padding: 0 0 18px 52px;
+    counter-increment: item;
+  }
+  .numbered li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    font-size: 0.95rem;
+  }
+  .numbered li strong { color: var(--primary-dark); }
+
+  /* Prevention section */
+  .prevention { background: var(--primary-light); }
+  .prev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .prev-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 26px;
+    border: 1px solid var(--border);
+  }
+  .prev-icon {
+    font-size: 1.9rem;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+  .prev-card h3 {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+  }
+  .prev-card p { font-size: 0.98rem; color: var(--text-muted); }
+
+  /* Memo / checklist */
+  .memo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+  }
+  .memo-col { background: var(--surface); border-radius: var(--radius); padding: 30px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+  .memo-col h3 { color: var(--primary-dark); font-size: 1.2rem; margin-bottom: 18px; }
+  .checklist { list-style: none; }
+  .checklist li { position: relative; padding-left: 34px; margin-bottom: 14px; color: var(--text-muted); }
+  .checklist li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    display: grid;
+    place-items: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  /* CTA Survey block */
+  .survey-cta {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: #fff;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .survey-cta h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    margin-bottom: 16px;
+  }
+  .survey-cta p { font-size: 1.1rem; max-width: 640px; margin: 0 auto 30px; opacity: 0.95; }
+  .survey-cta .btn { background: #fff; color: var(--primary-dark); }
+  .survey-cta .btn:hover { background: var(--accent-light); }
+
+  /* Footer */
+  footer {
+    background: #2B3A32;
+    color: #C9D2CC;
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 0.92rem;
+  }
+  footer a { color: var(--accent-light); text-decoration: underline; text-underline-offset: 3px; }
+  footer p + p { margin-top: 10px; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero { padding: 56px 0 48px; }
+    section { padding: 50px 0; }
+    .card, .tip-card, .prev-card, .memo-col { padding: 22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <nav class="nav">
+    <div class="logo">
+      <span class="logo-mark">♡</span>
+      Забота рядом
+    </div>
+    <div class="nav-links">
+      <a href="#about">О деменции</a>
+      <a href="#communication">Общение</a>
+      <a href="#daily">Уход</a>
+      <a href="#selfcare">О себе</a>
+      <a href="#prevention">Профилактика</a>
+      <a href="#survey">Опрос</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="container">
+    <h1>Деменция — это не просто «плохая память»</h1>
+    <p>Информация и поддержка для тех, кто заботится о близком человеке. Простые правила общения, организация дня и забота о себе — в одном месте.</p>
+    <a href="#survey" class="btn">Пройти анонимный опрос</a>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">Вы не одни: понимание деменции</h2>
+    <p class="section-subtitle">Что происходит с близким человеком и почему это важно понимать</p>
+    <div class="card intro-card">
+      <p>Деменция — это синдром, вызванный заболеваниями головного мозга, при котором нарушаются не только память, но и мышление, способность выполнять повседневные действия и поддерживать социальные связи. Болезнь Альцгеймера — наиболее распространённая форма деменции: на неё приходится около 60–70% случаев. По данным ВОЗ, в мире насчитывается более 57 миллионов человек с деменцией, и ежегодно диагностируется почти 10 миллионов новых случаев.</p>
+      <p>Если ваш близкий столкнулся с этим заболеванием, важно понимать: изменения в поведении и общении — не капризы и не «вредность», а проявления болезни. Это понимание — первый шаг к тому, чтобы выстроить жизнь семьи с заботой и уважением к человеку, сохраняя при этом собственные силы.</p>
+      <div class="highlight">
+        <strong>Важно:</strong> невролог и психиатр — обязательные специалисты для своевременной диагностики и подбора терапии. Официальный диагноз также открывает доступ к льготам, техническим средствам реабилитации и помощи от государства.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMUNICATION ============ -->
+<section id="communication" style="background: var(--surface);">
+  <div class="container">
+    <h2 class="section-title">Как общаться, чтобы вас поняли</h2>
+    <p class="section-subtitle">Нарушения речи и понимания — одни из самых трудных моментов для семьи. Вот проверенные приёмы, которые облегчают разговор и сохраняют достоинство человека.</p>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-num">1</span>
+        <h3>Говорите спокойно и просто</h3>
+        <p>Используйте короткие предложения и одну мысль за раз. Дайте собеседнику время понять и ответить.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-num">2</span>
+        <h3>Уберите отвлекающие факторы</h3>
+        <p>Выключите телевизор или радио, прежде чем начать разговор, и установите зрительный контакт.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-num">3</span>
+        <h3>Задавайте простые вопросы</h3>
+        <p>Лучше всего подходят вопросы «да / нет» или выбор из двух вариантов: «Вы хотите белую или синюю рубашку?».</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-num">4</span>
+        <h3>Не спорьте и не «проверяйте память»</h3>
+        <p>Вопросы вроде «Ты помнишь, кто я?» или «Ты снова забыл?» ставят человека в неловкое положение и усиливают тревогу.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-num">5</span>
+        <h3>Опирайтесь на прошлое</h3>
+        <p>Долговременная память часто сохраняется лучше кратковременной. Говорите о детстве, молодости, семейных историях, рассматривайте старые фотографии.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAILY CARE ============ -->
+<section id="daily">
+  <div class="container">
+    <h2 class="section-title">Как сделать день предсказуемым и безопасным</h2>
+    <p class="section-subtitle">Для человека с деменцией рутина — источник спокойствия. Несколько практических шагов для близких.</p>
+    <div class="card">
+      <ol class="numbered">
+        <li><strong>Поддерживайте постоянный распорядок.</strong> Старайтесь, чтобы гигиенические процедуры, приёмы пищи и сон происходили в одно и то же время.</li>
+        <li><strong>Используйте напоминания и списки дел.</strong> Записывайте встречи, приём лекарств и важные события в блокнот или календарь на видном месте.</li>
+        <li><strong>Поощряйте самостоятельность.</strong> Даже если человек одевается медленно, позвольте ему делать то, что он ещё может сам. Предлагайте помощь мягко и пошагово.</li>
+        <li><strong>Адаптируйте среду.</strong> Нескользящий коврик в ванной, устойчивый стул для душа, удобная одежда без мелких пуговиц и шнурков — это снижает риск падений.</li>
+        <li><strong>Обеспечьте безопасность, но не изолируйте.</strong> Убирайте очевидные риски, но сохраняйте как можно больше пространства для независимости.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SELF-CARE ============ -->
+<section id="selfcare" style="background: var(--surface);">
+  <div class="container">
+    <h2 class="section-title">Забота о себе — не роскошь, а необходимость</h2>
+    <p class="section-subtitle">Уход за близким с деменцией — тяжёлый и долгий путь. Выгорание ухаживающего — реальный риск, который отражается и на нём самом, и на качестве помощи.</p>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <h3>Просите о помощи</h3>
+        <p>Привлекайте других родственников и друзей, распределяйте задачи. Обращайтесь за консультацией к социальным работникам, психологам, врачам.</p>
+      </div>
+      <div class="tip-card">
+        <h3>Ищите ресурсы и сообщества</h3>
+        <p>Многие организации предлагают бесплатные консультации, информационные бюллетени и группы поддержки для семей, столкнувшихся с деменцией.</p>
+      </div>
+      <div class="tip-card">
+        <h3>Помните о своих потребностях</h3>
+        <p>Сон, отдых и личное время — не «эгоизм», а условие того, чтобы вы могли продолжать заботиться о близком без ущерба для себя.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREVENTION ============ -->
+<section id="prevention" class="prevention">
+  <div class="container">
+    <h2 class="section-title">Профилактика деменции в пожилом возрасте</h2>
+    <p class="section-subtitle">До 45% случаев деменции связаны с факторами, на которые можно повлиять. Эффект даёт сочетание нескольких направлений.</p>
+    <div class="prev-grid">
+      <div class="prev-card">
+        <span class="prev-icon">🏃</span>
+        <h3>Физическая активность</h3>
+        <p>Не менее 150 минут умеренной активности в неделю. Аэробные нагрузки, упражнения на силу и равновесие.</p>
+      </div>
+      <div class="prev-card">
+        <span class="prev-icon">🥗</span>
+        <h3>Питание</h3>
+        <p>Средиземноморская и MIND-диета связаны со снижением риска когнитивного снижения. Важно поддерживать нормальный вес.</p>
+      </div>
+      <div class="prev-card">
+        <span class="prev-icon">🧩</span>
+        <h3>Тренировка мозга и общение</h3>
+        <p>Головоломки, чтение, изучение нового, участие в группах и клубах. Социальная изоляция — фактор риска.</p>
+      </div>
+      <div class="prev-card">
+        <span class="prev-icon">❤️</span>
+        <h3>Контроль здоровья</h3>
+        <p>Следите за давлением и диабетом, корректируйте нарушения слуха и зрения, откажитесь от курения и ограничьте алкоголь.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+      <p style="margin-bottom: 0;">Профилактика деменции — это не гарантия, а снижение вероятности. Не существует единственного «чудодейственного средства»: эффект даёт сочетание мер, поддерживаемых на протяжении жизни. Начинать никогда не поздно — даже в пожилом возрасте изменения образа жизни могут замедлить снижение когнитивных функций.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEMO ============ -->
+<section id="memo">
+  <div class="container">
+    <h2 class="section-title">Краткая памятка</h2>
+    <p class="section-subtitle">Сохраните или перечитайте — это главное, что важно помнить</p>
+    <div class="memo-grid">
+      <div class="memo-col">
+        <h3>Родственникам</h3>
+        <ul class="checklist">
+          <li>Говорите просто, спокойно и без «проверок памяти».</li>
+          <li>Поддерживайте режим дня и поощряйте самостоятельность.</li>
+          <li>Не оставайтесь один на один с уходом — просите помощи и ищите поддержку.</li>
+        </ul>
+      </div>
+      <div class="memo-col">
+        <h3>Для профилактики</h3>
+        <ul class="checklist">
+          <li>Двигайтесь не менее 150 минут в неделю.</li>
+          <li>Придерживайтесь средиземноморского стиля питания.</li>
+          <li>Тренируйте мозг и сохраняйте социальные связи.</li>
+          <li>Контролируйте давление, диабет, слух и зрение.</li>
+          <li>Откажитесь от курения и ограничьте алкоголь.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SURVEY CTA ============ -->
+<section id="survey" class="survey-cta">
+  <div class="container">
+    <h2>Помогите нам стать лучше</h2>
+    <p>Пройдите короткий анонимный опрос — он займёт около 5 минут. Ваши ответы помогут нам понять, какая информация и поддержка нужны семьям, столкнувшимся с деменцией.</p>
+    <!-- Ссылку заменим после создания формы -->
+    <a href="#survey" class="btn" id="survey-btn">Пройти опрос</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <p>Информационный проект о деменции и поддержке близких.</p>
+    <p>По материалам: <a href="https://gocb.by/ru/patsientam/zdorovyj-obraz-zhizni/item/2032-profilaktika-bolezni-altsgejmera.html" target="_blank" rel="noopener">gocb.by</a> · Рекомендации ВОЗ</p>
+    <p style="margin-top: 14px; opacity: 0.7; font-size: 0.85rem;">Материал носит информационный характер и не заменяет консультацию врача.</p>
+  </div>
+</footer>
+
+<script>
+  // Плавная прокрутка и корректный переход к опросу
+  // После создания формы Google заменим href на прямую ссылку
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
