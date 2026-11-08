@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест: Правила общения</title>
+<style>
+  /* Тот же CSS, что и в первом тесте для единообразия */
+  :root { --bg: #FBF8F3; --surface: #FFFFFF; --primary: #4A7C59; --primary-dark: #3A6147; --primary-light: #E3EDE5; --text: #2B3A32; --text-muted: #5C6B62; --border: #E5E0D8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-size: 18px; line-height: 1.6; color: var(--text); background: var(--bg); padding: 20px; }
+  .container { max-width: 700px; margin: 0 auto; }
+  .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; font-weight: 600; }
+  .back-link:hover { text-decoration: underline; }
+  .card { background: var(--surface); border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(43,58,50,0.06); border: 1px solid var(--border); }
+  h1 { font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 10px; }
+  .subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 1rem; }
+  .question { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .question:last-child { border-bottom: none; margin-bottom: 10px; }
+  .question h3 { font-size: 1.1rem; margin-bottom: 12px; font-weight: 600; }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option-label { display: flex; align-items: center; padding: 14px 18px; border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.2s; background: #fff; }
+  .option-label:hover { border-color: var(--primary-light); background: var(--bg); }
+  .option-label input[type="radio"] { margin-right: 12px; width: 20px; height: 20px; accent-color: var(--primary); }
+  .option-label.checked { border-color: var(--primary); background: var(--primary-light); }
+  .btn { display: block; width: 100%; background: var(--primary); color: #fff; text-align: center; font-size: 1.1rem; font-weight: 600; padding: 16px; border-radius: 50px; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
+  .btn:hover { background: var(--primary-dark); }
+  #result { display: none; margin-top: 30px; padding: 25px; background: var(--primary-light); border-radius: 12px; border-left: 5px solid var(--primary); }
+  #result h3 { color: var(--primary-dark); margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html" class="back-link">← На главную</a>
+  <div class="card">
+    <h1>Правила общения</h1>
+    <p class="subtitle">Выберите вариант, который лучше всего подходит для общения с близким с деменцией.</p>
+
+    <form id="quizForm">
+      <div class="question">
+        <h3>1. Вы давно не виделись. Как начать разговор?</h3>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q1" value="0"> Спрошу: «Ты помнишь, кто я?»</label>
+          <label class="option-label"><input type="radio" name="q1" value="1"> Подойду, улыбнусь и назову себя по имени</label>
+        </div>
+      </div>
+      <div class="question">
+        <h3>2. Близкий забыл, как включить телевизор и начинает злиться.</h3>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q2" value="0"> Скажу: «Ты опять всё забыл, я же показывал вчера!»</label>
+          <label class="option-label"><input type="radio" name="q2" value="1"> Спокойно скажу: «Давай я помогу», и включу по шагам</label>
+        </div>
+      </div>
+      <div class="question">
+        <h3>3. В комнате громко работает телевизор, а вам нужно поговорить.</h3>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q3" value="0"> Буду говорить громче телевизора</label>
+          <label class="option-label"><input type="radio" name="q3" value="1"> Выключу телевизор, чтобы установить зрительный контакт</label>
+        </div>
+      </div>
+      <div class="question">
+        <h3>4. Близкий в 10-й раз рассказывает историю из молодости.</h3>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q4" value="0"> Скажу: «Ты уже рассказывал это сегодня»</label>
+          <label class="option-label"><input type="radio" name="q4" value="1"> Выслушаю и поддержу беседу, опираясь на его прошлое</label>
+        </div>
+      </div>
+      <div class="question">
+        <h3>5. Как лучше задать вопрос про ужин?</h3>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q5" value="0"> «Что ты хочешь на ужин?»</label>
+          <label class="option-label"><input type="radio" name="q5" value="1"> «Ты будешь суп или кашу?» (выбор из двух)</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Узнать результат</button>
+    </form>
+
+    <div id="result">
+      <h3 id="result-title"></h3>
+      <p id="result-text"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.option-label input').forEach(input => {
+    input.addEventListener('change', (e) => {
+      document.querySelectorAll(`input[name="${e.target.name}"]`).forEach(i => i.closest('.option-label').classList.remove('checked'));
+      e.target.closest('.option-label').classList.add('checked');
+    });
+  });
+
+  document.getElementById('quizForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    if (formData.size < 5) { alert("Ответьте на все вопросы."); return; }
+    let score = 0;
+    for (let value of formData.values()) { score += parseInt(value); }
+
+    const resultDiv = document.getElementById('result');
+    const title = document.getElementById('result-title');
+    const text = document.getElementById('result-text');
+    resultDiv.style.display = 'block';
+    
+    if (score === 5) {
+      title.innerText = "Идеальное общение!";
+      text.innerText = "Вы в совершенстве владеете правилами общения с человеком с деменцией. Вы сохраняете его достоинство и снижаете тревогу.";
+    } else if (score >= 3) {
+      title.innerText = "Вы на верном пути";
+      text.innerText = "Большинство ваших реакций верны, но иногда вы можете случайно спровоцировать тревогу. Перечитайте блок «Как общаться, чтобы вас поняли» на главной, чтобы отточить навыки.";
+    } else {
+      title.innerText = "Стоит изменить подход к общению";
+      text.innerText = "Некоторые ваши ответы могут расстраивать близкого. Помните: не нужно проверять память, нужно убирать отвлекающие факторы и помогать мягко. Прочитайте блок про общение на главной странице.";
+    }
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+</script>
+</body>
+</html>
