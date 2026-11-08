@@ -16,22 +16,35 @@
   .subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 1rem; }
   .question { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .question:last-child { border-bottom: none; margin-bottom: 10px; }
-  .question h3 { font-size: 1.1rem; margin-bottom: 12px; font-weight: 600; }
+  .question h3 { font-size: 1.1rem; margin-bottom: 12px; font-weight: 600; line-height: 1.4; }
   .options { display: flex; flex-direction: column; gap: 10px; }
-  .option-label { display: flex; align-items: center; padding: 14px 18px; border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.2s; background: #fff; }
+  
+  /* Адаптированные варианты ответов */
+  .option-label { display: flex; align-items: flex-start; padding: 16px; border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.2s; background: #fff; }
   .option-label:hover { border-color: var(--primary-light); background: var(--bg); }
-  .option-label input[type="radio"] { margin-right: 12px; width: 20px; height: 20px; accent-color: var(--primary); }
+  .option-label input[type="radio"] { margin-right: 12px; margin-top: 4px; width: 20px; height: 20px; flex-shrink: 0; accent-color: var(--primary); }
+  .option-label span { flex: 1; }
   .option-label.checked { border-color: var(--primary); background: var(--primary-light); }
+  
   .btn { display: block; width: 100%; background: var(--primary); color: #fff; text-align: center; font-size: 1.1rem; font-weight: 600; padding: 16px; border-radius: 50px; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; text-decoration: none;}
   .btn:hover { background: var(--primary-dark); }
   
-  /* Стили для блока результата */
-  #result { display: none; margin-top: 30px; padding: 30px; background: var(--primary-light); border-radius: 16px; border-left: 6px solid var(--primary); }
+  #result { display: none; margin-top: 30px; padding: 25px; background: var(--primary-light); border-radius: 16px; border-left: 6px solid var(--primary); }
   #result h3 { color: var(--primary-dark); margin-bottom: 15px; font-size: 1.3rem; }
-  #result p { margin-bottom: 15px; font-size: 1rem; color: var(--text); }
+  #result p { margin-bottom: 15px; font-size: 1rem; color: var(--text); line-height: 1.6; }
   #result p:last-of-type { margin-bottom: 25px; }
   .result-btn { background: var(--primary-dark); box-shadow: 0 4px 14px rgba(74, 124, 89, 0.3); margin-top: 0; }
   .result-btn:hover { background: #2B3A32; }
+
+  /* Мобильная адаптация */
+  @media (max-width: 600px) {
+    body { padding: 12px; font-size: 17px; }
+    .card { padding: 20px 16px; }
+    h1 { font-size: 1.5rem; }
+    .subtitle { margin-bottom: 20px; font-size: 0.95rem; }
+    .option-label { padding: 14px; }
+    #result { padding: 20px 16px; }
+  }
 </style>
 </head>
 <body>
@@ -45,36 +58,36 @@
       <div class="question">
         <h3>1. Деменция — это исключительно про потерю памяти.</h3>
         <div class="options">
-          <label class="option-label"><input type="radio" name="q1" value="0"> Верно</label>
-          <label class="option-label"><input type="radio" name="q1" value="1"> Неверно</label>
+          <label class="option-label"><input type="radio" name="q1" value="0"> <span>Верно</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="1"> <span>Неверно</span></label>
         </div>
       </div>
       <div class="question">
         <h3>2. Болезнь Альцгеймера — самая распространенная форма деменции.</h3>
         <div class="options">
-          <label class="option-label"><input type="radio" name="q2" value="1"> Верно</label>
-          <label class="option-label"><input type="radio" name="q2" value="0"> Неверно</label>
+          <label class="option-label"><input type="radio" name="q2" value="1"> <span>Верно</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="0"> <span>Неверно</span></label>
         </div>
       </div>
       <div class="question">
         <h3>3. Если пожилой человек стал агрессивным, это просто проявление характера с возрастом.</h3>
         <div class="options">
-          <label class="option-label"><input type="radio" name="q3" value="0"> Верно</label>
-          <label class="option-label"><input type="radio" name="q3" value="1"> Неверно, это могут быть симптомы болезни</label>
+          <label class="option-label"><input type="radio" name="q3" value="0"> <span>Верно</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="1"> <span>Неверно, это могут быть симптомы болезни</span></label>
         </div>
       </div>
       <div class="question">
         <h3>4. При подозрении на деменцию нужно просто успокоиться, это нормальное старение.</h3>
         <div class="options">
-          <label class="option-label"><input type="radio" name="q4" value="0"> Верно</label>
-          <label class="option-label"><input type="radio" name="q4" value="1"> Неверно, нужно обратиться к неврологу или психиатру</label>
+          <label class="option-label"><input type="radio" name="q4" value="0"> <span>Верно</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="1"> <span>Неверно, нужно обратиться к неврологу или психиатру</span></label>
         </div>
       </div>
       <div class="question">
         <h3>5. Изменения в поведении — это способ человека «позлить» родственников.</h3>
         <div class="options">
-          <label class="option-label"><input type="radio" name="q5" value="0"> Верно</label>
-          <label class="option-label"><input type="radio" name="q5" value="1"> Неверно, это проявления заболевания мозга</label>
+          <label class="option-label"><input type="radio" name="q5" value="0"> <span>Верно</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="1"> <span>Неверно, это проявления заболевания мозга</span></label>
         </div>
       </div>
 
