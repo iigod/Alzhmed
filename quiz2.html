@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Тест: Правила общения</title>
 <style>
-  /* Тот же CSS, что и в первом тесте для единообразия */
   :root { --bg: #FBF8F3; --surface: #FFFFFF; --primary: #4A7C59; --primary-dark: #3A6147; --primary-light: #E3EDE5; --text: #2B3A32; --text-muted: #5C6B62; --border: #E5E0D8; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-size: 18px; line-height: 1.6; color: var(--text); background: var(--bg); padding: 20px; }
@@ -23,10 +22,15 @@
   .option-label:hover { border-color: var(--primary-light); background: var(--bg); }
   .option-label input[type="radio"] { margin-right: 12px; width: 20px; height: 20px; accent-color: var(--primary); }
   .option-label.checked { border-color: var(--primary); background: var(--primary-light); }
-  .btn { display: block; width: 100%; background: var(--primary); color: #fff; text-align: center; font-size: 1.1rem; font-weight: 600; padding: 16px; border-radius: 50px; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
+  .btn { display: block; width: 100%; background: var(--primary); color: #fff; text-align: center; font-size: 1.1rem; font-weight: 600; padding: 16px; border-radius: 50px; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; text-decoration: none;}
   .btn:hover { background: var(--primary-dark); }
-  #result { display: none; margin-top: 30px; padding: 25px; background: var(--primary-light); border-radius: 12px; border-left: 5px solid var(--primary); }
-  #result h3 { color: var(--primary-dark); margin-bottom: 10px; }
+  
+  #result { display: none; margin-top: 30px; padding: 30px; background: var(--primary-light); border-radius: 16px; border-left: 6px solid var(--primary); }
+  #result h3 { color: var(--primary-dark); margin-bottom: 15px; font-size: 1.3rem; }
+  #result p { margin-bottom: 15px; font-size: 1rem; color: var(--text); }
+  #result p:last-of-type { margin-bottom: 25px; }
+  .result-btn { background: var(--primary-dark); box-shadow: 0 4px 14px rgba(74, 124, 89, 0.3); margin-top: 0; }
+  .result-btn:hover { background: #2B3A32; }
 </style>
 </head>
 <body>
@@ -78,7 +82,8 @@
 
     <div id="result">
       <h3 id="result-title"></h3>
-      <p id="result-text"></p>
+      <div id="result-text"></div>
+      <a href="index.html#communication" class="btn result-btn" id="result-btn" style="display:none;">Перейти к разделу «Общение»</a>
     </div>
   </div>
 </div>
@@ -101,17 +106,26 @@
     const resultDiv = document.getElementById('result');
     const title = document.getElementById('result-title');
     const text = document.getElementById('result-text');
+    const btn = document.getElementById('result-btn');
+    
     resultDiv.style.display = 'block';
+    btn.style.display = 'block';
     
     if (score === 5) {
       title.innerText = "Идеальное общение!";
-      text.innerText = "Вы в совершенстве владеете правилами общения с человеком с деменцией. Вы сохраняете его достоинство и снижаете тревогу.";
+      text.innerHTML = "<p>Вы в совершенстве владеете правилами общения с человеком с деменцией. Вы сохраняете его достоинство, снижаете тревогу и создаете безопасную эмоциональную среду.</p><p>Вы понимаете, что прошлое — это опора, а простые вопросы и спокойный тон помогают избежать конфликтов.</p>";
+      btn.innerText = "Вернуться на главную";
+      btn.href = "index.html";
     } else if (score >= 3) {
       title.innerText = "Вы на верном пути";
-      text.innerText = "Большинство ваших реакций верны, но иногда вы можете случайно спровоцировать тревогу. Перечитайте блок «Как общаться, чтобы вас поняли» на главной, чтобы отточить навыки.";
+      text.innerHTML = "<p>Большинство ваших реакций верны, но иногда вы можете случайно спровоцировать тревогу у близкого человека.</p><p>Помните: не нужно «проверять память» вопросами вроде «Ты помнишь, кто я?». Лучше убрать отвлекающие факторы (выключить телевизор) и задавать вопросы с выбором из двух вариантов, чтобы человек не терялся.</p>";
+      btn.innerText = "Перечитать правила общения";
+      btn.href = "index.html#communication";
     } else {
       title.innerText = "Стоит изменить подход к общению";
-      text.innerText = "Некоторые ваши ответы могут расстраивать близкого. Помните: не нужно проверять память, нужно убирать отвлекающие факторы и помогать мягко. Прочитайте блок про общение на главной странице.";
+      text.innerHTML = "<p>Некоторые ваши ответы могут сильно расстраивать близкого и провоцировать агрессию или замкнутость. Важно понять: человек с деменцией не может контролировать свою забывчивость.</p><p>Споры, упреки и сложные вопросы только усугубляют ситуацию. Вам необходимо освоить мягкие и простые приемы общения, чтобы сохранить контакт.</p>";
+      btn.innerText = "Изучить правила общения";
+      btn.href = "index.html#communication";
     }
     resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
