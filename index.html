@@ -142,15 +142,6 @@
     box-shadow: 0 8px 22px rgba(74, 124, 89, 0.4);
   }
 
-  .btn-secondary {
-    background: transparent;
-    color: var(--primary-dark);
-    border: 2px solid var(--primary);
-    box-shadow: none;
-  }
-
-  .btn-secondary:hover { background: var(--primary); color: #fff; }
-
   /* ---------- SECTIONS ---------- */
   section { padding: 70px 0; }
 
@@ -307,20 +298,36 @@
     font-weight: 700;
   }
 
-  /* CTA Survey block */
-  .survey-cta {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-    color: #fff;
-    text-align: center;
-    padding: 60px 20px;
+  /* Survey Cards */
+  .survey-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 30px;
+    border: 2px solid var(--border);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
-  .survey-cta h2 {
-    font-size: clamp(1.5rem, 3.5vw, 2rem);
-    margin-bottom: 16px;
+  .survey-card-link:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
   }
-  .survey-cta p { font-size: 1.1rem; max-width: 640px; margin: 0 auto 30px; opacity: 0.95; }
-  .survey-cta .btn { background: #fff; color: var(--primary-dark); }
-  .survey-cta .btn:hover { background: var(--accent-light); }
+  .survey-card-link h3 {
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  .survey-card-link p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  .survey-card-link .link-text {
+    color: var(--primary);
+    font-weight: 600;
+  }
 
   /* Footer */
   footer {
@@ -338,7 +345,7 @@
     .nav-links { display: none; }
     .hero { padding: 56px 0 48px; }
     section { padding: 50px 0; }
-    .card, .tip-card, .prev-card, .memo-col { padding: 22px; }
+    .card, .tip-card, .prev-card, .memo-col, .survey-card-link { padding: 22px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -361,7 +368,7 @@
       <a href="#daily">Уход</a>
       <a href="#selfcare">О себе</a>
       <a href="#prevention">Профилактика</a>
-      <a href="#survey">Опрос</a>
+      <a href="#survey">Тесты</a>
     </div>
   </nav>
 </header>
@@ -371,7 +378,7 @@
   <div class="container">
     <h1>Деменция — это не просто «плохая память»</h1>
     <p>Информация и поддержка для тех, кто заботится о близком человеке. Простые правила общения, организация дня и забота о себе — в одном месте.</p>
-    <a href="#survey" class="btn">Пройти анонимный опрос</a>
+    <a href="#survey" class="btn">Пройти тесты</a>
   </div>
 </div>
 
@@ -525,13 +532,34 @@
   </div>
 </section>
 
-<!-- ============ SURVEY CTA ============ -->
-<section id="survey" class="survey-cta">
+<!-- ============ SURVEY CHOICE ============ -->
+<section id="survey" style="background: var(--surface);">
   <div class="container">
-    <h2>Помогите нам стать лучше</h2>
-    <p>Пройдите короткий анонимный опрос — он займёт около 5 минут. Ваши ответы помогут нам понять, какая информация и поддержка нужны семьям, столкнувшимся с деменцией.</p>
-    <!-- Ссылку заменим после создания формы -->
-    <a href="#survey" class="btn" id="survey-btn">Пройти опрос</a>
+    <h2 class="section-title">Проверьте свои знания</h2>
+    <p class="section-subtitle">Выберите тему, которая сейчас для вас наиболее актуальна. В конце теста вы получите персональные рекомендации.</p>
+    
+    <div class="prev-grid" style="margin-top: 30px;">
+      <!-- Карточка 1 -->
+      <a href="quiz1.html" class="survey-card-link">
+        <h3>Мифы и симптомы</h3>
+        <p>Узнайте, отличаете ли вы проявления болезни от «капризов» и нормального старения.</p>
+        <span class="link-text">Пройти тест →</span>
+      </a>
+
+      <!-- Карточка 2 -->
+      <a href="quiz2.html" class="survey-card-link">
+        <h3>Правила общения</h3>
+        <p>Проверьте, насколько легко вам находить общий язык с близким.</p>
+        <span class="link-text">Пройти тест →</span>
+      </a>
+
+      <!-- Карточка 3 -->
+      <a href="quiz3.html" class="survey-card-link">
+        <h3>Уход и безопасность</h3>
+        <p>Проверьте, всё ли вы делаете для безопасности близкого и защиты от выгорания.</p>
+        <span class="link-text">Пройти тест →</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -545,8 +573,7 @@
 </footer>
 
 <script>
-  // Плавная прокрутка и корректный переход к опросу
-  // После создания формы Google заменим href на прямую ссылку
+  // Плавная прокрутка
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const id = link.getAttribute('href');
